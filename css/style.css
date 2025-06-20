@@ -12,6 +12,10 @@
     box-sizing: border-box;
 }
 
+html, body { /* Adicionado para evitar rolagem horizontal indesejada */
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
@@ -37,7 +41,7 @@ header {
     top: 0;
     z-index: 1000;
     padding: 15px 0;
-    /* transition: all 0.3s ease; REMOVIDO */
+    /* transition: all 0.3s ease; REMOVIDO PARA EVITAR CONFLITOS */
 }
 
 header .container {
@@ -107,7 +111,7 @@ header h1 {
 .hamburger {
     display: none;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 1002; /* Garante que o hambúrguer esteja acima do menu */
 }
 
 .bar {
@@ -245,7 +249,7 @@ main {
 
 .project-card:hover {
     transform: translateY(-10px);
-    box-shadow: 15px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
 }
 
 .project-img {
@@ -448,7 +452,7 @@ footer p {
 @media (max-width: 768px) {
     .hamburger {
         display: block;
-        z-index: 1002; /* Garante que o hambúrguer esteja acima do menu */
+        z-index: 1002;
     }
     
     .nav-menu {
@@ -457,14 +461,19 @@ footer p {
         top: 0;
         height: 100vh;
         width: 70%;
-        max-width: 300px; /* Adicionado para limitar a largura em telas muito grandes */
+        max-width: 300px;
         flex-direction: column;
         background-color: var(--secondary-color);
         text-align: center;
-        transition: left 0.5s ease; /* Transição apenas para a propriedade 'left' */
+        transition: left 0.5s ease-in-out; /* Ajuste na transição */
         padding-top: 80px;
         box-shadow: 2px 0 15px rgba(0,0,0,0.2);
-        z-index: 1001; /* Z-index menor que o do hambúrguer, mas maior que o conteúdo */
+        z-index: 1001;
+        /* Forçando aceleração de hardware */
+        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        backface-visibility: hidden;
+        perspective: 1000px;
     }
     
     .nav-menu.active {

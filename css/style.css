@@ -452,7 +452,7 @@ footer p {
     
     .nav-menu {
         position: fixed;
-        left: -100%;
+        left: -100%; /* Inicia o menu fora da tela */
         top: 0;
         height: 100vh;
         width: 70%;
@@ -465,7 +465,7 @@ footer p {
     }
     
     .nav-menu.active {
-        left: 0;
+        left: 0; /* Move o menu para dentro da tela quando ativo */
     }
     
     .nav-menu li {

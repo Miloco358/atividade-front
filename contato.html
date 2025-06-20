@@ -51,10 +51,9 @@
                     
                     <div class="contact-form">
                         <form id="contactForm" action="https://formsubmit.co/kauannikolaslemes@gmail.com" method="POST">
-                            <!-- Configurações do FormSubmit -->
                             <input type="hidden" name="_captcha" value="false">
                             <input type="hidden" name="_next" value="https://seusite.com/obrigado.html">
-                            <input type="hidden" name="_template" value="box">
+                            <input type="hidden" name="_template" value="table">
                             
                             <div class="form-group">
                                 <label for="name">Nome</label>
@@ -104,5 +103,41 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script>
+        // Validação do Formulário
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let isValid = true;
+            const form = this;
+            
+            // Validação simples
+            document.querySelectorAll('[required]').forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    const errorElement = document.getElementById(input.id + 'Error');
+                    errorElement.textContent = 'Este campo é obrigatório';
+                    errorElement.style.display = 'block';
+                }
+            });
+            
+            if (isValid) {
+                const submitBtn = form.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Enviando...';
+                
+                // Simula envio (substitua pelo form.submit() real quando em produção)
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'block';
+                    form.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Enviar Mensagem';
+                    
+                    // Descomente para envio real
+                    // form.submit();
+                }, 1500);
+            }
+        });
+    </script>
 </body>
 </html>

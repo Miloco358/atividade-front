@@ -1,77 +1,73 @@
-// Função para validar e enviar o formulário
-function validateContactForm() {
-    const form = document.getElementById('contactForm');
-    if (!form) return;
+// Menu Mobile
+function setupMobileMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
 
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const subjectInput = document.getElementById('subject');
-    const messageInput = document.getElementById('message');
-
-    const nameError = document.getElementById('nameError');
-    const emailError = document.getElementById('emailError');
-    const subjectError = document.getElementById('subjectError');
-    const messageError = document.getElementById('messageError');
-
-    const successMessage = document.getElementById('successMessage');
-
-    // Validação em tempo real
-    nameInput.addEventListener('input', () => validateField(nameInput, nameError, 'Nome'));
-    emailInput.addEventListener('input', () => validateEmail());
-    subjectInput.addEventListener('input', () => validateField(subjectInput, subjectError, 'Assunto'));
-    messageInput.addEventListener('input', () => validateField(messageInput, messageError, 'Mensagem'));
-
-    function validateField(input, errorElement, fieldName) {
-        if (input.value.trim() === '') {
-            errorElement.textContent = `Por favor, insira ${fieldName.toLowerCase()}`;
-            errorElement.style.display = 'block';
-            return false;
-        }
-        errorElement.style.display = 'none';
-        return true;
-    }
-
-    function validateEmail() {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (emailInput.value.trim() === '') {
-            emailError.textContent = 'Por favor, insira seu email';
-            emailError.style.display = 'block';
-            return false;
-        } else if (!emailRegex.test(emailInput.value)) {
-            emailError.textContent = 'Por favor, insira um email válido';
-            emailError.style.display = 'block';
-            return false;
-        }
-        emailError.style.display = 'none';
-        return true;
-    }
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const isNameValid = validateField(nameInput, nameError, 'Nome');
-        const isEmailValid = validateEmail();
-        const isSubjectValid = validateField(subjectInput, subjectError, 'Assunto');
-        const isMessageValid = validateField(messageInput, messageError, 'Mensagem');
-        
-        if (isNameValid && isEmailValid && isSubjectValid && isMessageValid) {
-            // Mostra feedback visual
-            successMessage.style.display = 'block';
-            form.style.opacity = '0.7';
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
             
-            // Envia o formulário
-            form.submit();
-            
-            // Desabilita o botão para evitar múltiplos envios
-            const submitBtn = form.querySelector('button[type="submit"]');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Enviando...';
-        }
+            // Fecha o menu quando um item é clicado
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+        });
+    }
+}
+
+// Atualiza o ano no footer
+function updateYear() {
+    const yearElement = document.getElementById('year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+}
+
+// Animação de scroll
+function setupScrollAnimation() {
+    const animateElements = document.querySelectorAll('[data-anime]');
+    
+    if (animateElements.length > 0) {
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        animateElements.forEach(element => {
+            animationObserver.observe(element);
+        });
+    }
+}
+
+// Efeito hover nos cards
+function setupSkillCardsHover() {
+    const skillCards = document.querySelectorAll('.skill-card');
+    
+    skillCards.forEach(card => {
+        const icon = card.querySelector('.skill-icon');
+        
+        card.addEventListener('mouseenter', () => {
+            icon.style.transform = 'scale(1.2) rotate(10deg)';
+            icon.style.transition = 'transform 0.3s ease';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            icon.style.transform = 'scale(1) rotate(0)';
+        });
     });
 }
 
-// Inicializa quando o DOM estiver pronto
+// Inicializa tudo quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', function() {
-    validateContactForm();
-    // Outras funções de inicialização...
+    setupMobileMenu();
+    updateYear();
+    setupScrollAnimation();
+    setupSkillCardsHover();
 });

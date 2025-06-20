@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Entre em contato com Kauan Lemes para oportunidades de trabalho ou projetos">
     <title>Contato | Kauan Lemes</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="imagens/fotoquadr.heic">
 </head>
 <body>
     <header>
@@ -15,7 +17,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="sobre.html">Sobre</a></li>
                     <li><a href="projetos.html">Projetos</a></li>
-                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="contato.html" class="active">Contato</a></li>
                 </ul>
                 <div class="hamburger">
                     <span class="bar"></span>
@@ -29,23 +31,71 @@
     <main>
         <section class="contact">
             <div class="container">
-                <h2>Contato</h2>
+                <h2>Entre em Contato</h2>
                 <div class="contact-container">
                     <div class="contact-info">
                         <h3>Informações</h3>
-                        <p>Entre em contato para oportunidades ou projetos.</p>
-                        <p>Email: kauannikolaslemes@gmail.com</p>
+                        <p>Estou disponível para oportunidades de trabalho ou projetos freelance.</p>
+                        <ul class="contact-details">
+                            <li>
+                                <strong>Email:</strong> kauannikolaslemes@gmail.com
+                            </li>
+                            <li>
+                                <strong>GitHub:</strong> github.com/kauan_lemes
+                            </li>
+                        </ul>
                     </div>
+                    
                     <div class="contact-form">
-                        <form id="contactForm">
+                        <form id="contactForm" action="https://formsubmit.co/kauannikolaslemes@gmail.com" method="POST">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="https://seusite.com/obrigado.html">
+                            
                             <div class="form-group">
                                 <label for="name">Nome</label>
-                                <input type="text" id="name" required>
+                                <input type="text" id="name" name="name" required>
+                                <span class="error-message" id="nameError"></span>
                             </div>
+                            
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" required>
+                                <input type="email" id="email" name="email" required>
+                                <span class="error-message" id="emailError"></span>
                             </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Assunto</label>
+                                <input type="text" id="subject" name="_subject" required>
+                                <span class="error-message" id="subjectError"></span>
+                            </div>
+                            
                             <div class="form-group">
                                 <label for="message">Mensagem</label>
-                                <textarea id="message" required></textarea>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                                <span class="error-message" id="messageError"></span>
+                            </div>
+                            
+                            <button type="submit" class="btn">Enviar Mensagem</button>
+                        </form>
+                        
+                        <div id="successMessage" class="success-message">
+                            <p>Mensagem enviada com sucesso! Entrarei em contato em breve.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Kauan Lemes. Todos os direitos reservados.</p>
+            <a href="https://github.com/kauan_lemes" aria-label="GitHub" target="_blank">
+                <img src="imagens/logo_github.png" alt="GitHub" class="github-logo">
+            </a>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

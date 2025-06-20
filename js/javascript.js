@@ -3,6 +3,39 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
 
+    if (hamburger && navMenu) {
+        // MUDANÇA AQUI: usar 'touchstart' para diagnosticar
+        hamburger.addEventListener('touchstart', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            this.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                setTimeout(() => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }, 100);
+            });
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!hamburger.contains(event.target) && !navMenu.contains(event.target) && navMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    }
+    // ... restante do seu script.js
+});
+document.addEventListener('DOMContentLoaded', function() {
+    // Menu Mobile
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
     // Verifica se os elementos existem antes de adicionar event listeners
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', function(event) {

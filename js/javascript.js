@@ -1,73 +1,65 @@
-// Menu Mobile
-function setupMobileMenu() {
+document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
-
+    
     if (hamburger && navMenu) {
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
             navMenu.classList.toggle('active');
-            
-            // Fecha o menu quando um item é clicado
-            document.querySelectorAll('.nav-menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                });
+        });
+        
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
             });
         });
     }
-}
-
-// Atualiza o ano no footer
-function updateYear() {
+    
     const yearElement = document.getElementById('year');
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
-}
-
-// Animação de scroll
-function setupScrollAnimation() {
-    const animateElements = document.querySelectorAll('[data-anime]');
     
-    if (animateElements.length > 0) {
-        const animationObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let isValid = true;
+            const inputs = this.querySelectorAll('[required]');
+            
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.borderColor = 'red';
+                } else {
+                    input.style.borderColor = '#ddd';
                 }
             });
-        }, { threshold: 0.1 });
-
-        animateElements.forEach(element => {
-            animationObserver.observe(element);
+            
+            if (isValid) {
+                const submitBtn = this.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Enviando...';
+                
+                setTimeout(() => {
+                    alert('Mensagem enviada com sucesso!');
+                    this.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Enviar Mensagem';
+                }, 1500);
+            }
         });
     }
-}
-
-// Efeito hover nos cards
-function setupSkillCardsHover() {
-    const skillCards = document.querySelectorAll('.skill-card');
     
+    const skillCards = document.querySelectorAll('.skill-card');
     skillCards.forEach(card => {
-        const icon = card.querySelector('.skill-icon');
-        
-        card.addEventListener('mouseenter', () => {
-            icon.style.transform = 'scale(1.2) rotate(10deg)';
-            icon.style.transition = 'transform 0.3s ease';
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
         });
-        
-        card.addEventListener('mouseleave', () => {
-            icon.style.transform = 'scale(1) rotate(0)';
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
         });
     });
-}
-
-// Inicializa tudo quando o DOM estiver pronto
-document.addEventListener('DOMContentLoaded', function() {
-    setupMobileMenu();
-    updateYear();
-    setupScrollAnimation();
-    setupSkillCardsHover();
 });

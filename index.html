@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio profissional de Kauan Lemes, desenvolvedor Front-End e estudante de Engenharia de Software">
     <title>Kauan Lemes | Portfólio</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="imagens/fotoquadr.heic">
 </head>
 <body>
     <header>
@@ -12,7 +14,7 @@
             <h1>Kauan Lemes</h1>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="sobre.html">Sobre</a></li>
                     <li><a href="projetos.html">Projetos</a></li>
                     <li><a href="contato.html">Contato</a></li>
@@ -30,19 +32,43 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <h2>Desenvolvedor Front-End</h2>
-                    <p>Crio soluções web modernas e responsivas.</p>
+                    <h2>Olá, eu sou <span style="color: #3498db;">Kauan Lemes</span></h2>
+                    <p class="profession">Desenvolvedor Front-End | Engenharia de Software</p>
+                    <p>Crio soluções web modernas, responsivas e com ótima experiência de usuário.</p>
                     <a href="projetos.html" class="btn">Ver Projetos</a>
                 </div>
                 <img src="imagens/fotoarred.png" alt="Kauan Lemes" class="profile-img">
+            </div>
+        </section>
+
+        <section class="skills">
+            <div class="container">
+                <h2>Habilidades</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon">💻</div>
+                        <h3>Front-End</h3>
+                        <p>HTML5, CSS3, JavaScript, React</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">📱</div>
+                        <h3>Responsivo</h3>
+                        <p>Designs que se adaptam a qualquer dispositivo</p>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon">🎨</div>
+                        <h3>UI/UX</h3>
+                        <p>Foco na experiência do usuário</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; <span id="year"></span> Kauan Lemes</p>
-            <a href="https://github.com/kauan_lemes" target="_blank">
+            <p>&copy; <span id="year"></span> Kauan Lemes. Todos os direitos reservados.</p>
+            <a href="https://github.com/kauan_lemes" aria-label="GitHub" target="_blank">
                 <img src="imagens/logo_github.png" alt="GitHub" class="github-logo">
             </a>
         </div>

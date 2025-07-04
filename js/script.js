@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Menu Mobile - Versão otimizada para Android
+    // Menu Mobile - Versão simplificada para clique único
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     
@@ -9,44 +9,30 @@ document.addEventListener('DOMContentLoaded', function() {
             navMenu.classList.toggle('active');
             
             // Bloqueia/libera o scroll da página
-            if (navMenu.classList.contains('active')) {
-                document.body.classList.add('menu-open');
-            } else {
-                document.body.classList.remove('menu-open');
-            }
+            document.body.classList.toggle('menu-open', navMenu.classList.contains('active'));
         };
         
-        // Adiciona eventos para touch e click
+        // Adiciona apenas o evento de click
         hamburger.addEventListener('click', toggleMenu);
-        hamburger.addEventListener('touchstart', toggleMenu);
         
-        // Fechar menu ao clicar/tocar nos links
+        // Fechar menu ao clicar nos links
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
                 document.body.classList.remove('menu-open');
             });
-            
-            link.addEventListener('touchend', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            });
         });
         
-        // Fechar menu ao tocar fora (para Android)
-        document.addEventListener('touchstart', (e) => {
+        // Fechar menu ao clicar fora
+        document.addEventListener('click', (e) => {
             if (navMenu.classList.contains('active') && 
                 !navMenu.contains(e.target) && 
                 !hamburger.contains(e.target)) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
+                toggleMenu();
             }
         });
     }
-    
     // Atualizar ano no footer
     const yearElement = document.getElementById('year');
     if (yearElement) {
@@ -88,15 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Enviando...';
                 
-                // Simular envio (substituir por form.submit() em produção)
                 setTimeout(() => {
                     document.getElementById('successMessage').style.display = 'block';
                     this.reset();
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Enviar Mensagem';
-                    
-                    // Para produção, descomente:
-                    // this.submit();
                 }, 1500);
             }
         });

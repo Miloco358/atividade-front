@@ -4,30 +4,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.querySelector('.nav-menu');
     
     if (hamburger && navMenu) {
-        const toggleMenu = () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            
-            // Bloqueia/libera o scroll da página
-            if (navMenu.classList.contains('active')) {
-                document.body.classList.add('menu-open');
-            } else {
-                document.body.classList.remove('menu-open');
-            }
-        };
-        
-        // Adiciona eventos para touch e click
-        hamburger.addEventListener('click', toggleMenu);
-        hamburger.addEventListener('touchstart', toggleMenu);
-        
-        // Fechar menu ao clicar/tocar nos links
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            });
-            
+// Função para alternar o estado do menu (abrir/fechar)
+const toggleMenu = () => {
+    // Alterna a classe 'active' no botão e no menu
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    
+    // Bloqueia ou libera o scroll da página, dependendo do estado do menu
+    if (navMenu.classList.contains('active')) {
+        document.body.classList.add('menu-open'); // bloqueia scroll
+    } else {
+        document.body.classList.remove('menu-open'); // libera scroll
+    }
+};
+
+// Ativa o menu ao clicar no botão hamburger
+hamburger.addEventListener('click', toggleMenu);
+
+// Fecha o menu ao clicar em qualquer link dentro do menu
+document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.classList.remove('menu-open');
+    });
+});
+
             link.addEventListener('touchend', () => {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');

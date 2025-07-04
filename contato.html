@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -50,7 +49,9 @@
                     <div class="contact-form">
                         <form id="contactForm" action="https://formsubmit.co/kauannikolaslemes@gmail.com" method="POST">
                             <input type="hidden" name="_captcha" value="false">
-                            <input type="hidden" name="_next" value="https://seusite.com/obrigado.html">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_next" value="https://seusite.com/contato.html?success=true">
+                            <input type="hidden" name="_subject" value="Novo contato do seu site">
                             
                             <div class="form-group">
                                 <label for="name">Nome</label>
@@ -66,7 +67,7 @@
                             
                             <div class="form-group">
                                 <label for="subject">Assunto</label>
-                                <input type="text" id="subject" name="_subject" required>
+                                <input type="text" id="subject" name="subject" required>
                                 <span class="error-message" id="subjectError"></span>
                             </div>
                             
@@ -96,7 +97,3 @@
             </a>
         </div>
     </footer>
-
-    <script src="js/script.js"></script>
-</body>
-</html>

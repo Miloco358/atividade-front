@@ -1,6 +1,8 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Menu Mobile - Versão otimizada para Android
-            const toggleMenu = () => {
+@@ -4,30 +4,32 @@ document.addEventListener('DOMContentLoaded', function() {
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (hamburger && navMenu) {
+        const toggleMenu = () => {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
             
@@ -12,9 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
         
-        // Adiciona eventos para click
+        // Adiciona eventos para touch e click
         hamburger.addEventListener('click', toggleMenu);
-
+        hamburger.addEventListener('touchstart', toggleMenu);
         
         // Fechar menu ao clicar/tocar nos links
         document.querySelectorAll('.nav-menu a').forEach(link => {
@@ -24,29 +26,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.classList.remove('menu-open');
             });
             
-                    });
-                } else {
-                    console.log('hamburger ou navMenu não encontrados');
-                }
-            });
-            link.addEventListener('touchend', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            });
-        });
-        
-        // Fechar menu ao tocar fora (para Android)
-        document.addEventListener('touchstart', (e) => {
-            if (navMenu.classList.contains('active') && 
-                !navMenu.contains(e.target) && 
-                !hamburger.contains(e.target)) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            }
-        });
+// Função para alternar o estado do menu (abrir/fechar)
+const toggleMenu = () => {
+    // Alterna a classe 'active' no botão e no menu
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    
+    // Bloqueia ou libera o scroll da página, dependendo do estado do menu
+    if (navMenu.classList.contains('active')) {
+        document.body.classList.add('menu-open'); // bloqueia scroll
+    } else {
+        document.body.classList.remove('menu-open'); // libera scroll
     }
+};
     
     // Atualizar ano no footer
     const yearElement = document.getElementById('year');

@@ -124,5 +124,3 @@
         animateElements.forEach(el => observer.observe(el));
     });
     </script>
-</body>
-</html>

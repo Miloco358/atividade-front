@@ -1,36 +1,29 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Menu Mobile - Versão otimizada para Android
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    if (hamburger && navMenu) {
-            document.addEventListener('DOMContentLoaded', function () {
-                const hamburger = document.querySelector('.hamburger');
-                const navMenu = document.querySelector('.nav-menu');
+            const toggleMenu = () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
             
-                if (hamburger && navMenu) {
-                    // Alterna visibilidade do menu e bloqueia o scroll
-                    const toggleMenu = () => {
-                        hamburger.classList.toggle('active');
-                        navMenu.classList.toggle('active');
+            // Bloqueia/libera o scroll da página
+            if (navMenu.classList.contains('active')) {
+                document.body.classList.add('menu-open');
+            } else {
+                document.body.classList.remove('menu-open');
+            }
+        };
+        
+        // Adiciona eventos para click
+        hamburger.addEventListener('click', toggleMenu);
+
+        
+        // Fechar menu ao clicar/tocar nos links
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
             
-                        if (navMenu.classList.contains('active')) {
-                            document.body.classList.add('menu-open');
-                        } else {
-                            document.body.classList.remove('menu-open');
-                        }
-                    };
-            
-                    // Clica no botão hambúrguer → abre/fecha menu
-                    hamburger.addEventListener('click', toggleMenu);
-            
-                    // Clica em um link → fecha o menu
-                    document.querySelectorAll('.nav-menu a').forEach(link => {
-                        link.addEventListener('click', () => {
-                            hamburger.classList.remove('active');
-                            navMenu.classList.remove('active');
-                            document.body.classList.remove('menu-open');
-                        });
                     });
                 } else {
                     console.log('hamburger ou navMenu não encontrados');

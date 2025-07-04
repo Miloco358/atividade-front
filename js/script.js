@@ -1,13 +1,3 @@
-    <footer>
-        <div class="container">
-            <p>&copy; <span id="year"></span> Kauan Lemes. Todos os direitos reservados.</p>
-            <a href="https://github.com/Miloco358" aria-label="GitHub" target="_blank">
-                <img src="imagens/logo_github.png" alt="GitHub" class="github-logo">
-            </a>
-        </div>
-    </footer>
-
-    <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Menu Mobile
         const hamburger = document.querySelector('.hamburger');
